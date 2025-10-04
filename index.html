@@ -15,7 +15,7 @@
             color: #E2E8F0; /* Light text for contrast */
             overflow-x: hidden; /* Prevent horizontal scroll from dynamic elements */
 
-            /* NEW: Subtle site noise/texture for a high-res screen look */
+            /* Subtle site noise/texture for a high-res screen look */
             background-image: radial-gradient(circle at center, #112244 1px, transparent 0),
                               radial-gradient(circle at center, #112244 1px, transparent 0);
             background-size: 50px 50px;
@@ -35,7 +35,7 @@
             transform: translateY(0);
         }
         
-        /* --- NEW ANIMATIONS FOR FUTURISTIC EFFECT --- */
+        /* --- CORE ANIMATIONS --- */
         @keyframes fadeInScale {
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
@@ -43,75 +43,46 @@
         
         /* Pulse glow for hero overlay */
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.3) inset; }
-            50% { box-shadow: 0 0 35px rgba(16, 185, 129, 0.6) inset; }
+            /* Increased alpha for better visibility at 40% overall opacity */
+            0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) inset; }
+            50% { box-shadow: 0 0 35px rgba(16, 185, 129, 0.8) inset; }
         }
         
-        /* Scanning lines for hero background */
-        @keyframes scanLine {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 500px; }
-        }
-
-        /* NEW: Binary stream for the header */
+        /* Binary stream animation keyframes */
         @keyframes binaryStream {
             0% { background-position-x: 0; }
-            100% { background-position-x: -500px; } /* Moves the vertical lines left */
+            100% { background-position-x: -500px; }
         }
         
+        /* Binary stream background for the Header */
         .binary-stream-bg {
-            /* Pattern of vertical lines moving left */
             background-image: linear-gradient(90deg, 
                 rgba(16, 185, 129, 0.1) 1px, transparent 1px);
-            background-size: 40px 100%; /* Spacing for the lines */
-            animation: binaryStream 30s linear infinite; /* Slow, continuous stream */
+            background-size: 40px 100%;
+            animation: binaryStream 30s linear infinite;
         }
 
-        /* NEW: Enhanced glow effect for cards on hover */
-        .card-glow {
-            transition: all 0.3s ease-in-out;
-        }
-        .card-glow:hover {
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), 
-                        0 8px 15px rgba(0, 0, 0, 0.5);
-            transform: translateY(-6px); /* More pronounced lift */
-        }
-
-
-        .hero-title {
-            animation: fadeInScale 1.5s ease-out forwards;
-        }
-        .hero-subtitle {
-            animation: fadeInScale 1.5s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-        .hero-cta {
-            animation: fadeInScale 1.5s ease-out 1s forwards;
-            opacity: 0;
-        }
-        
-        .parallax-bg {
-            /* Existing static background image */
-            background-image: url('https://placehold.co/1920x1080/0A142A/10B981?text=Dynamic+Market+Data');
-            background-size: cover;
-            background-attachment: fixed; 
-            background-position: center 0;
-            z-index: 0;
+        /* NEW: Binary stream background for the Hero Section (Full Transparency) */
+        .hero-binary-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.08; /* Made slightly more subtle */
+            z-index: 1; 
+            opacity: 0.4; /* Set to 40% transparency */
 
-            /* Scanning Grid/Data Overlay */
-            background-image: 
-                linear-gradient(rgba(16, 185, 129, 0.1) 1px, transparent 1px), /* Horizontal lines */
-                linear-gradient(90deg, transparent 1px, rgba(16, 185, 129, 0.05) 1px); /* Vertical lines */
-            background-size: 100% 50px, 50px 100%; 
-            animation: scanLine 60s linear infinite; 
+            background-image: linear-gradient(90deg, 
+                rgba(16, 185, 129, 0.3) 1px, transparent 1px);
+            background-size: 40px 100%;
+            animation: binaryStream 30s linear infinite;
         }
-
+        
+        /* Default fade/scale animations for hero text */
+        .hero-title { animation: fadeInScale 1.5s ease-out forwards; }
+        .hero-subtitle { animation: fadeInScale 1.5s ease-out 0.5s forwards; opacity: 0; }
+        .hero-cta { animation: fadeInScale 1.5s ease-out 1s forwards; opacity: 0; }
+        
         .hero-glow-overlay {
             position: absolute;
             top: 0;
@@ -119,19 +90,75 @@
             right: 0;
             bottom: 0;
             pointer-events: none;
-            /* Inner shadow with pulsing animation */
             box-shadow: 0 0 150px rgba(16, 185, 129, 0.2) inset; 
             animation: pulseGlow 5s infinite alternate ease-in-out;
-            z-index: 1; 
+            z-index: 2; /* Above the binary background */
+            opacity: 0.4; /* Set to 40% transparency */
+        }
+
+        /* Enhanced glow effect for cards on hover */
+        .card-glow {
+            transition: all 0.3s ease-in-out;
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), 
+                        0 8px 15px rgba(0, 0, 0, 0.5);
+            transform: translateY(-6px);
+        }
+
+        /* --- Fixed Stock Ticker CSS --- */
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        .ticker-inner {
+            display: flex;
+            width: 200%; 
+            animation: ticker-scroll 30s linear infinite;
+        }
+        
+        .glass-banner {
+            backdrop-filter: blur(8px);
+            background-color: rgba(30, 41, 59, 0.4); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animation for percentage change */
+        .percentage-change {
+            transition: color 0.5s ease-in-out, transform 0.2s ease-out;
+        }
+        .flash-up {
+            animation: flashGreen 0.3s;
+        }
+        .flash-down {
+            animation: flashRed 0.3s;
+        }
+        @keyframes flashGreen {
+            0% { background-color: rgba(16, 185, 129, 0.5); }
+            100% { background-color: transparent; }
+        }
+        @keyframes flashRed {
+            0% { background-color: rgba(244, 63, 94, 0.5); } /* Tailwind rose-500 */
+            100% { background-color: transparent; }
         }
     </style>
 </head>
 
 <body>
+    
+    <!-- 1. Translucent, Fixed Stock Ticker Banner -->
+    <div class="fixed top-0 left-0 w-full z-50 py-2 overflow-hidden glass-banner">
+        <div class="ticker-inner">
+            <!-- Stock data content will be dynamically inserted here by the script -->
+        </div>
+    </div>
 
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-[#0A142A]/90 backdrop-blur-sm shadow-xl transition-shadow duration-300">
-        <!-- NEW: Binary Stream Background in Header -->
+
+    <!-- Navigation Bar (Now positioned below the Ticker) -->
+    <header class="sticky top-[50px] z-40 bg-[#0A142A]/90 backdrop-blur-sm shadow-xl transition-shadow duration-300">
+        <!-- Binary Stream Background in Header (opacity: 0.2) -->
         <div class="absolute inset-0 binary-stream-bg opacity-20"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
@@ -152,15 +179,17 @@
         </div>
     </header>
 
-    <main>
-        <!-- 1. Hero Section (High Impact & Initial Load Animation) -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
-            <!-- Background Parallax Layer with Scanning Grid Animation -->
-            <div class="parallax-bg" id="parallax-bg"></div>
+    <!-- Main Content (Adjusted padding-top to accommodate both fixed bars) -->
+    <main class="pt-[110px]">
+        <!-- 2. Hero Section (High Impact & Initial Load Animation) -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center pb-16 overflow-hidden">
             
+            <!-- NEW: Full-screen background using the same pattern as the header (opacity: 0.4) -->
+            <div class="hero-binary-bg"></div>
+
             <!-- Pulsing Neon Glow Overlay -->
             <div class="hero-glow-overlay"></div>
-
+            
             <div class="relative z-10 max-w-4xl text-center px-4">
                 <h1 class="hero-title text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-gray-100">
                     <span class="text-accent block">ARCHITECT</span> Your Financial Future
@@ -175,7 +204,7 @@
             </div>
         </section>
 
-        <!-- 2. About The Guru: Sharon Vijit Singh (Parallax Image) -->
+        <!-- 3. About The Guru: Sharon Vijit Singh (Parallax Image) -->
         <section id="about" class="py-20 md:py-32 relative z-10 bg-[#070F1E]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -183,7 +212,7 @@
                     <div class="relative aspect-square md:aspect-auto" id="guru-image-container">
                         <!-- Sharon Vijit Singh Profile Picture (Base64) -->
                         <img id="guru-image"
-                             src="data:image/jpeg;base64,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`
+                             src="data:image/jpeg;base64,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"
                              alt="Sharon Vijit Singh, Market Guru, Solomon Capitals"
                              class="rounded-3xl shadow-2xl dynamic-element object-cover w-full h-full"
                              style="transform: scale(1.05) translateY(0); transition: transform 0.1s linear, opacity 0.8s ease-out, scale 0.8s ease-out;"
@@ -218,7 +247,7 @@
             </div>
         </section>
 
-        <!-- 3. Course Offerings (The Solomon Program) -->
+        <!-- 4. Course Offerings (The Solomon Program) -->
         <section id="course" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-6xl font-extrabold mb-4 dynamic-element">
@@ -262,7 +291,7 @@
             </div>
         </section>
 
-        <!-- 4. Testimonials & Stats (Dynamic Number Display) -->
+        <!-- 5. Testimonials & Stats (Dynamic Number Display) -->
         <section id="testimonials" class="py-20 md:py-32 bg-[#070F1E] relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-5xl font-extrabold mb-16 dynamic-element">
@@ -295,7 +324,7 @@
             </div>
         </section>
 
-        <!-- 5. Registration/CTA (Sticky Form Element) -->
+        <!-- 6. Registration/CTA (Sticky Form Element) -->
         <section id="register" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -363,15 +392,116 @@
 
     <script>
         // --- Core Animation and Interactivity Script ---
+        
+        // Mock stock data structure
+        let mockStocks = [
+            { symbol: 'GOOGL', change: 1.25, isUp: true, full: 'Alphabet Inc.' },
+            { symbol: 'AAPL', change: -0.80, isUp: false, full: 'Apple Inc.' },
+            { symbol: 'TSLA', change: 3.51, isUp: true, full: 'Tesla, Inc.' },
+            { symbol: 'MSFT', change: 2.05, isUp: true, full: 'Microsoft Corp.' },
+            { symbol: 'JPM', change: -0.07, isUp: false, full: 'JPMorgan Chase & Co.' },
+            { symbol: 'NVDA', change: 4.88, isUp: true, full: 'NVIDIA Corp.' },
+            { symbol: 'VIX', change: -1.02, isUp: false, full: 'Volatility Index' },
+            { symbol: 'GLD', change: 0.92, isUp: true, full: 'SPDR Gold Shares' }
+        ];
 
-        // UPDATED: Handles form submission by opening WhatsApp with pre-filled details, now including phone number.
+        const tickerInner = document.querySelector('.ticker-inner');
+        const updateInterval = 3000; // Update every 3 seconds
+
+        /**
+         * Creates the HTML element for a single stock entry.
+         * @param {Object} stock - The stock data object.
+         * @returns {string} - The HTML string for the stock.
+         */
+        const createStockElement = (stock) => {
+            const colorClass = stock.isUp ? 'text-emerald-300' : 'text-rose-400';
+            const arrow = stock.isUp ? '▲' : '▼';
+            const flashClass = stock.isUp ? 'flash-up' : 'flash-down';
+
+            // Add an ID for easy lookup and class for animation
+            return `
+                <div class="flex items-center space-x-2 text-sm font-medium transition duration-300 hover:scale-[1.02] cursor-default percentage-change ${flashClass}" 
+                    title="${stock.full}" 
+                    data-symbol="${stock.symbol}"
+                    >
+                    <span class="text-gray-100 tracking-widest uppercase">${stock.symbol}</span>
+                    <span class="${colorClass} flex items-center">
+                        <span class="mr-1">${arrow}</span>
+                        <span>${stock.change.toFixed(2)}%</span>
+                    </span>
+                </div>
+            `;
+        };
+
+        /**
+         * Renders the stock ticker content, repeating the data twice for seamless scroll.
+         */
+        function renderStockTicker() {
+            const stockHtml = mockStocks.map(createStockElement).join('');
+            // Repeat the data twice for infinite scroll effect
+            tickerInner.innerHTML = `<div class="flex flex-shrink-0 space-x-12 px-6">${stockHtml}</div>` 
+                                  + `<div class="flex flex-shrink-0 space-x-12 px-6">${stockHtml}</div>`;
+        }
+
+        /**
+         * Updates the mock stock data with random values and triggers re-render.
+         */
+        function updateStockData() {
+            // Generate entirely new stock data
+            const newStocks = mockStocks.map(stock => {
+                // Generate a random change between -4.99 and +4.99
+                const newChangeValue = (Math.random() * 10) - 5; 
+                const finalChange = parseFloat(newChangeValue.toFixed(2));
+                
+                return {
+                    ...stock,
+                    change: Math.abs(finalChange),
+                    isUp: finalChange >= 0
+                };
+            });
+            
+            // Check if the overall direction has changed for flashing
+            const previousStocks = mockStocks;
+            mockStocks = newStocks;
+
+            // Render the updated data
+            renderStockTicker();
+
+            // Apply a short flash animation to elements that changed direction
+            setTimeout(() => {
+                document.querySelectorAll('.percentage-change').forEach((el, index) => {
+                    // Check the original element (we only check the first set of rendered stocks)
+                    if (index < previousStocks.length) {
+                        const newStock = mockStocks[index];
+                        const oldStock = previousStocks[index];
+                        
+                        if (newStock.isUp !== oldStock.isUp) {
+                            el.classList.add(newStock.isUp ? 'flash-up' : 'flash-down');
+                            setTimeout(() => {
+                                el.classList.remove('flash-up', 'flash-down');
+                            }, 500);
+                        }
+                    }
+                });
+            }, 50); // Small delay to ensure render has completed
+        }
+        
+        // --- Event Handlers and Initializers ---
+
+        // Initial render of the ticker
+        renderStockTicker(); 
+        
+        // Start the dynamic update loop for percentages
+        setInterval(updateStockData, updateInterval); 
+
+        // Handles form submission by opening WhatsApp with pre-filled details, now including phone number.
         function handleRegistration(event) {
             event.preventDefault();
 
             // 1. Collect data from form fields
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value; // <-- Retrieve phone number
+            const phone = document.getElementById('phone').value; 
             const experience = document.getElementById('experience').value;
 
             // 2. Define the recipient WhatsApp number
@@ -412,10 +542,9 @@
             }, 8000);
         }
 
-        // 2. Scroll Animation Setup (Kept from previous version)
+        // 2. Scroll Animation Setup
         const dynamicElements = document.querySelectorAll('.dynamic-element');
         const guruImage = document.getElementById('guru-image');
-        const parallaxBg = document.getElementById('parallax-bg');
         const statsContainer = document.getElementById('stats-container');
         let statsAnimated = false;
 
@@ -466,25 +595,17 @@
         function handleScrollDynamics() {
             const scrollY = window.scrollY;
 
-            // --- 2.1 Parallax Effect (Background and Image) ---
-
-            // Background Parallax: Move the background image slightly slower
-            if (parallaxBg) {
-                // The CSS animation handles the scrolling grid, but we keep the slower background image parallax
-                parallaxBg.style.transform = `translateY(${scrollY * 0.4}px)`;
-            }
-
-            // Guru Image Parallax: Move the image slightly
+            // --- 2.1 Guru Image Parallax ---
             if (guruImage) {
-                // Ensure the base transform is preserved, use CSS `style` for smoother update
+                // Ensure the base transform is preserved
                 const yOffset = scrollY * 0.1; // Slower movement
                 const scale = 1.05;
+                // This image parallax effect makes the image slightly drift as the user scrolls
                 guruImage.style.transform = `scale(${scale}) translateY(-${yOffset}px)`;
             }
 
 
             // --- 2.2 Dynamic Element Visibility (Slide-in/Fade-in) ---
-
             dynamicElements.forEach(el => {
                 const delay = parseInt(el.getAttribute('data-delay') || 0);
 
@@ -515,7 +636,6 @@
         });
 
         // Use the initial requestAnimationFrame approach instead of a standard scroll listener
-        // This provides smoother performance for frequent visual updates.
         requestAnimationFrame(handleScrollDynamics);
 
     </script>
