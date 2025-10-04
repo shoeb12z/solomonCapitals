@@ -115,7 +115,7 @@
         .ticker-inner {
             display: flex;
             width: 200%; 
-            animation: ticker-scroll 30s linear infinite;
+            animation: ticker-scroll 8s linear infinite;
         }
         
         .glass-banner {
@@ -143,6 +143,11 @@
             0% { background-color: rgba(244, 63, 94, 0.5); } /* Tailwind rose-500 */
             100% { background-color: transparent; }
         }
+        
+        /* Ensure all elements are accounted for when scrolling */
+        html {
+            scroll-behavior: smooth; /* Fallback for browsers that don't use script */
+        }
     </style>
 </head>
 
@@ -162,14 +167,14 @@
         <div class="absolute inset-0 binary-stream-bg opacity-20"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-accent tracking-wider hover:text-green-300 transition-colors">SOLOMON CAPITALS</a>
-            <nav class="hidden md:flex space-x-8">
+            <a href="#hero" class="text-xl sm:text-2xl font-bold text-accent tracking-wider hover:text-green-300 transition-colors">SOLOMON CAPITALS</a>
+            <nav class="hidden md:flex space-x-4 lg:space-x-8">
                 <a href="#about" class="text-sm font-medium hover:text-accent transition-colors duration-200">The Guru</a>
                 <a href="#course" class="text-sm font-medium hover:text-accent transition-colors duration-200">Program</a>
                 <a href="#testimonials" class="text-sm font-medium hover:text-accent transition-colors duration-200">Success</a>
                 <a href="#register" class="text-sm font-medium hover:text-accent transition-colors duration-200">Enroll Today</a>
             </nav>
-            <a href="#register" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold rounded-full bg-accent text-gray-900 shadow-lg hover:bg-green-300 transition-all duration-300 transform hover:scale-105">
+            <a href="#register" class="hidden sm:inline-flex px-3 py-1 sm:px-4 sm:py-2 text-sm font-semibold rounded-full bg-accent text-gray-900 shadow-lg hover:bg-green-300 transition-all duration-300 transform hover:scale-105">
                 Start Trading
             </a>
             <!-- Mobile Menu Placeholder -->
@@ -191,14 +196,16 @@
             <div class="hero-glow-overlay"></div>
             
             <div class="relative z-10 max-w-4xl text-center px-4">
-                <h1 class="hero-title text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-gray-100">
+                <!-- Adjusted size for better mobile readability -->
+                <h1 class="hero-title text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tighter text-gray-100">
                     <span class="text-accent block">ARCHITECT</span> Your Financial Future
                 </h1>
-                <p class="hero-subtitle mt-6 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
-                    Master the markets with the vision of **Solomon Capitals**. Stop following, start leading.
+                <!-- Adjusted size for better mobile readability -->
+                <p class="hero-subtitle mt-6 text-base sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto px-4">
+                    Master the markets with the vision of Solomon Capitals. <br>Stop following, start leading.
                 </p>
                 <!-- Enhanced CTA Button -->
-                <a href="#course" class="hero-cta mt-10 inline-block px-12 py-4 text-lg font-bold rounded-full bg-accent text-gray-900 shadow-2xl shadow-accent/50 transform hover:scale-[1.07] transition-all duration-500 ease-in-out">
+                <a href="#course" class="hero-cta mt-10 inline-block px-8 sm:px-12 py-3 sm:py-4 text-lg font-bold rounded-full bg-accent text-gray-900 shadow-2xl shadow-accent/50 transform hover:scale-[1.07] transition-all duration-500 ease-in-out">
                     Explore The Program
                 </a>
             </div>
@@ -207,29 +214,32 @@
         <!-- 3. About The Guru: Sharon Vijit Singh (Parallax Image) -->
         <section id="about" class="py-20 md:py-32 relative z-10 bg-[#070F1E]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Responsive Grid: Columns stack on mobile -->
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <!-- Guru Image with Parallax Effect -->
-                    <div class="relative aspect-square md:aspect-auto" id="guru-image-container">
+                    <div class="relative aspect-square md:aspect-auto h-96" id="guru-image-container">
                         <!-- Sharon Vijit Singh Profile Picture (Base64) -->
-                        <img id="guru-image"
-                             src="data:image/jpeg;base64,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"
+                        <br><br><img id="guru-image"
+                             src="data:image/jpeg;base64,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"
                              alt="Sharon Vijit Singh, Market Guru, Solomon Capitals"
                              class="rounded-3xl shadow-2xl dynamic-element object-cover w-full h-full"
                              style="transform: scale(1.05) translateY(0); transition: transform 0.1s linear, opacity 0.8s ease-out, scale 0.8s ease-out;"
-                             onerror="this.onerror=null;this.src='https://placehold.co/800x800/2A375A/FFFFFF?text=Sharon+Vijit+Singh';"
+                             onerror="this.onerror=null;this.src='https://i.postimg.cc/JhLPmKwn/Whats-App-Image-2025-10-05-at-12-41-58-AM.jpg';"
                         >
                     </div>
 
                     <!-- Guru Bio Text -->
-                    <div class="space-y-8">
-                        <h2 class="text-5xl font-extrabold text-gray-100 dynamic-element">
+                    <div class="space-y-6">
+                        <!-- Adjusted size for better mobile readability -->
+                        <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-100 dynamic-element">
                             Meet <span class="text-accent">Sharon Vijit Singh</span>
                         </h2>
-                        <h3 class="text-2xl font-semibold text-gray-300 dynamic-element" data-delay="100">
+                        <!-- Adjusted size for better mobile readability -->
+                        <h3 class="text-xl md:text-2xl font-semibold text-gray-300 dynamic-element" data-delay="100">
                             The Visionary Leader of Solomon Capitals
                         </h3>
                         <p class="text-gray-400 dynamic-element" data-delay="200">
-                            **Sharon Vijit Singh**, the principal guru at **Solomon Capitals**, leads a program rooted in proprietary data models, behavioral economics, and a strict adherence to risk-defined technical analysis. The methodology is designed for statistical advantage, transforming students into confident market operators.
+                            Sharon Vijit Singh, the principal guru at Solomon Capitals, leads a program rooted in proprietary data models, behavioral economics, and a strict adherence to risk-defined technical analysis. The methodology is designed for statistical advantage, transforming students into confident market operators.
                         </p>
                         <ul class="space-y-3 text-gray-300 dynamic-element" data-delay="300">
                             <li class="flex items-start">
@@ -250,42 +260,43 @@
         <!-- 4. Course Offerings (The Solomon Program) -->
         <section id="course" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-6xl font-extrabold mb-4 dynamic-element">
+                <!-- Adjusted size for better mobile readability -->
+                <h2 class="text-4xl sm:text-6xl font-extrabold mb-4 dynamic-element">
                     The <span class="text-accent">Solomon</span> Program
                 </h2>
-                <p class="text-xl text-gray-400 mb-16 dynamic-element" data-delay="100">
+                <p class="text-base sm:text-xl text-gray-400 mb-12 sm:mb-16 dynamic-element" data-delay="100">
                     A comprehensive, 12-week journey from market participant to market operator.
                 </p>
 
-                <!-- Course Modules Grid -->
+                <!-- Course Modules Grid: Stacks on mobile, 3 columns on tablet/desktop -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Module 1 -->
                     <div class="p-8 bg-card rounded-xl shadow-2xl transition-all duration-300 dynamic-element card-glow" data-delay="200">
-                        <span class="text-5xl font-bold text-accent mb-4 block">01</span>
-                        <h3 class="text-3xl font-bold mb-3">Foundation Quant</h3>
+                        <span class="text-4xl sm:text-5xl font-bold text-accent mb-4 block">01</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Foundation Quant</h3>
                         <p class="text-gray-400">
                             Deep dive into fundamental analysis, reading financial statements (P&L, Balance Sheet), and calculating intrinsic valuation models for long-term investing.
                         </p>
                     </div>
                     <!-- Module 2 -->
                     <div class="p-8 bg-card rounded-xl shadow-2xl transition-all duration-300 dynamic-element card-glow" data-delay="300">
-                        <span class="text-5xl font-bold text-accent mb-4 block">02</span>
-                        <h3 class="text-3xl font-bold mb-3">Technical Mastery</h3>
+                        <span class="text-4xl sm:text-5xl font-bold text-accent mb-4 block">02</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Technical Mastery</h3>
                         <p class="text-gray-400">
                             Advanced technical analysis, proprietary candlestick patterns, volume interpretation, RSI/MACD divergence, and multi-timeframe execution.
                         </p>
                     </div>
                     <!-- Module 3 -->
                     <div class="p-8 bg-card rounded-xl shadow-2xl transition-all duration-300 dynamic-element card-glow" data-delay="400">
-                        <span class="text-5xl font-bold text-accent mb-4 block">03</span>
-                        <h3 class="text-3xl font-bold mb-3">Psychology & Risk</h3>
+                        <span class="text-4xl sm:text-5xl font-bold text-accent mb-4 block">03</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-3">Psychology & Risk</h3>
                         <p class="text-gray-400">
                             The institutional guide to capital preservation, position sizing, emotional discipline, and developing an iron-clad trading plan.
                         </p>
                     </div>
                 </div>
 
-                <a href="#register" class="mt-16 inline-block px-10 py-4 text-xl font-bold rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-gray-900 transition-all duration-300 dynamic-element hover:shadow-accent/50 hover:shadow-lg" data-delay="500">
+                <a href="#register" class="mt-12 sm:mt-16 inline-block px-8 py-3 sm:px-10 sm:py-4 text-lg sm:text-xl font-bold rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-pink-900 transition-all duration-300 dynamic-element hover:shadow-accent/50 hover:shadow-lg" data-delay="500">
                     Secure Your Spot
                 </a>
             </div>
@@ -294,32 +305,32 @@
         <!-- 5. Testimonials & Stats (Dynamic Number Display) -->
         <section id="testimonials" class="py-20 md:py-32 bg-[#070F1E] relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <h2 class="text-5xl font-extrabold mb-16 dynamic-element">
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-12 sm:mb-16 dynamic-element">
                     Results That <span class="text-accent">Speak Louder</span>
                 </h2>
 
                 <!-- Stats Grid (Will animate when visible) -->
-                <div id="stats-container" class="grid grid-cols-1 sm:grid-cols-3 gap-12 text-gray-200">
+                <div id="stats-container" class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 text-gray-200">
                     <div class="dynamic-element text-center p-6 bg-card rounded-xl shadow-xl border-t-4 border-accent card-glow" data-delay="100">
-                        <p class="text-6xl font-extrabold text-accent mb-2" data-target="1500" id="stat-1">0</p>
-                        <p class="text-lg font-medium">Students Mentored Globally</p>
+                        <p class="text-5xl sm:text-6xl font-extrabold text-accent mb-2" data-target="1500" id="stat-1">0</p>
+                        <p class="text-base sm:text-lg font-medium">Students Mentored Globally</p>
                     </div>
                     <div class="dynamic-element text-center p-6 bg-card rounded-xl shadow-xl border-t-4 border-accent card-glow" data-delay="200">
-                        <p class="text-6xl font-extrabold text-accent mb-2" data-target="92" id="stat-2">0%</p>
-                        <p class="text-lg font-medium">Strategy Consistency Rate</p>
+                        <p class="text-5xl sm:text-6xl font-extrabold text-accent mb-2" data-target="92" id="stat-2">0%</p>
+                        <p class="text-base sm:text-lg font-medium">Strategy Consistency Rate</p>
                     </div>
                     <div class="dynamic-element text-center p-6 bg-card rounded-xl shadow-xl border-t-4 border-accent card-glow" data-delay="300">
-                        <p class="text-6xl font-extrabold text-accent mb-2" data-target="10" id="stat-3">0+</p>
-                        <p class="text-lg font-medium">Years of Active Mentorship</p>
+                        <p class="text-5xl sm:text-6xl font-extrabold text-accent mb-2" data-target="10" id="stat-3">0+</p>
+                        <p class="text-base sm:text-lg font-medium">Years of Active Mentorship</p>
                     </div>
                 </div>
 
                 <!-- Testimonial Card -->
-                <div class="max-w-4xl mx-auto mt-20 bg-card p-10 rounded-2xl shadow-3xl border border-gray-700 dynamic-element card-glow" data-delay="500">
-                    <p class="text-xl italic text-gray-300 mb-6">
-                        "The guidance from **Sharon Vijit Singh** is unparalleled. I moved from chaotic speculation to strategic execution overnight. The **Solomon Program** provides the clearest blueprint for market success."
+                <div class="max-w-4xl mx-auto mt-16 sm:mt-20 bg-card p-8 sm:p-10 rounded-2xl shadow-3xl border border-gray-700 dynamic-element card-glow" data-delay="500">
+                    <p class="text-base sm:text-xl italic text-gray-300 mb-6">
+                        "The guidance from Sharon is unparalleled. I moved from chaotic speculation to strategic execution overnight. The Solomon Program provides the clearest blueprint for market success."
                     </p>
-                    <p class="text-lg font-semibold text-accent">- Sophia L., Former Retail Trader</p>
+                    <p class="text-base sm:text-lg font-semibold text-accent">- Shoeb Hussain, Former Retail Trader</p>
                 </div>
             </div>
         </section>
@@ -327,13 +338,14 @@
         <!-- 6. Registration/CTA (Sticky Form Element) -->
         <section id="register" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Responsive Grid: Stacked on mobile -->
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="space-y-6">
-                        <h2 class="text-5xl font-extrabold dynamic-element">
+                        <h2 class="text-4xl sm:text-5xl font-extrabold dynamic-element">
                             <span class="text-accent">Ready to Build</span> Your Legacy?
                         </h2>
-                        <p class="text-xl text-gray-400 dynamic-element" data-delay="100">
-                            The next cohort is strictly limited to 50 participants to ensure deep, personalized mentorship directly from **Sharon Vijit Singh**. Don't miss the opportunity to join the elite.
+                        <p class="text-base sm:text-xl text-gray-400 dynamic-element" data-delay="100">
+                            The next cohort is strictly limited to 50 participants to ensure deep, personalized mentorship directly from Sharon Vijit Singh. Don't miss the opportunity to join the elite.
                         </p>
                         <ul class="space-y-3 text-gray-300 dynamic-element" data-delay="200">
                             <li class="flex items-center"><span class="text-accent mr-2 text-2xl">•</span> 12 Weeks of Live Training</li>
@@ -379,11 +391,11 @@
     <!-- Footer -->
     <footer class="bg-[#070F1E] py-10 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            <p>&copy; 2025 **Solomon Capitals**. All Rights Reserved. Trading involves risk.</p>
+            <p>&copy; 2025 Solomon Capitals. All Rights Reserved. Trading involves risk.</p>
             <p class="text-xs mt-2 text-gray-600">
-                **Headquarters:** Plot No 123 Rathore Layout, Anand Nagar, Nagpur, Maharashtra 440019, IN
+                Address: Plot No 123 Rathore Layout, Anant Nagar, Nagpur, Maharashtra 440019, IN
             </p>
-            <div class="mt-4 space-x-4">
+            <div class="mt-4 space-x-4 text-sm sm:text-base">
                 <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
                 <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
             </div>
@@ -406,7 +418,7 @@
         ];
 
         const tickerInner = document.querySelector('.ticker-inner');
-        const updateInterval = 3000; // Update every 3 seconds
+        const updateInterval = 1000; // Update every 3 seconds
 
         /**
          * Creates the HTML element for a single stock entry.
@@ -420,7 +432,7 @@
 
             // Add an ID for easy lookup and class for animation
             return `
-                <div class="flex items-center space-x-2 text-sm font-medium transition duration-300 hover:scale-[1.02] cursor-default percentage-change ${flashClass}" 
+                <div class="flex items-center space-x-2 text-xs sm:text-sm font-medium transition duration-200 hover:scale-[1.02] cursor-default percentage-change ${flashClass}" 
                     title="${stock.full}" 
                     data-symbol="${stock.symbol}"
                     >
@@ -439,8 +451,8 @@
         function renderStockTicker() {
             const stockHtml = mockStocks.map(createStockElement).join('');
             // Repeat the data twice for infinite scroll effect
-            tickerInner.innerHTML = `<div class="flex flex-shrink-0 space-x-12 px-6">${stockHtml}</div>` 
-                                  + `<div class="flex flex-shrink-0 space-x-12 px-6">${stockHtml}</div>`;
+            tickerInner.innerHTML = `<div class="flex flex-shrink-0 space-x-8 sm:space-x-12 px-6">${stockHtml}</div>` 
+                                  + `<div class="flex flex-shrink-0 space-x-8 sm:space-x-12 px-6">${stockHtml}</div>`;
         }
 
         /**
@@ -479,13 +491,39 @@
                             el.classList.add(newStock.isUp ? 'flash-up' : 'flash-down');
                             setTimeout(() => {
                                 el.classList.remove('flash-up', 'flash-down');
-                            }, 500);
+                            }, 100);
                         }
                     }
                 });
             }, 50); // Small delay to ensure render has completed
         }
         
+        // --- NEW: Smooth Scrolling Navigation ---
+        function setupSmoothScroll() {
+            // Select all internal links that point to a section ID
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                // Skip external links or those without a target ID
+                if (anchor.getAttribute('href').length > 1) { 
+                    anchor.addEventListener('click', function (e) {
+                        // Prevent default hash jump
+                        e.preventDefault();
+
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+
+                        if (targetElement) {
+                            // Use modern scrollIntoView with smooth behavior
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start' // Scroll to the start of the element
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+
         // --- Event Handlers and Initializers ---
 
         // Initial render of the ticker
@@ -631,8 +669,7 @@
 
         // 3. Initial Setup and Listener
         window.addEventListener('load', () => {
-             // Initial check and start the dynamic loop
-             handleScrollDynamics();
+             setupSmoothScroll();
         });
 
         // Use the initial requestAnimationFrame approach instead of a standard scroll listener
