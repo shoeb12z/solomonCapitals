@@ -43,7 +43,6 @@
         
         /* Pulse glow for hero overlay */
         @keyframes pulseGlow {
-            /* Increased alpha for better visibility at 40% overall opacity */
             0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.5) inset; }
             50% { box-shadow: 0 0 35px rgba(16, 185, 129, 0.8) inset; }
         }
@@ -62,7 +61,7 @@
             animation: binaryStream 30s linear infinite;
         }
 
-        /* NEW: Binary stream background for the Hero Section (Full Transparency) */
+        /* Binary stream background for the Hero Section (Full Transparency) */
         .hero-binary-bg {
             position: absolute;
             top: 0;
@@ -70,8 +69,7 @@
             width: 100%;
             height: 100%;
             z-index: 1; 
-            opacity: 0.4; /* Set to 40% transparency */
-
+            opacity: 0.4;
             background-image: linear-gradient(90deg, 
                 rgba(16, 185, 129, 0.3) 1px, transparent 1px);
             background-size: 40px 100%;
@@ -92,8 +90,8 @@
             pointer-events: none;
             box-shadow: 0 0 150px rgba(16, 185, 129, 0.2) inset; 
             animation: pulseGlow 5s infinite alternate ease-in-out;
-            z-index: 2; /* Above the binary background */
-            opacity: 0.4; /* Set to 40% transparency */
+            z-index: 2;
+            opacity: 0.4;
         }
 
         /* Enhanced glow effect for cards on hover */
@@ -115,7 +113,7 @@
         .ticker-inner {
             display: flex;
             width: 200%; 
-            animation: ticker-scroll 8s linear infinite;
+            animation: ticker-scroll 10s linear infinite;
         }
         
         .glass-banner {
@@ -148,6 +146,15 @@
         html {
             scroll-behavior: smooth; /* Fallback for browsers that don't use script */
         }
+
+        /* Mobile Menu Custom Transition */
+        #mobile-menu {
+            transition: transform 0.4s ease-out;
+            transform: translateY(-100%);
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -161,7 +168,7 @@
     </div>
 
 
-    <!-- Navigation Bar (Now positioned below the Ticker) -->
+    <!-- 2. Navigation Bar (Now positioned below the Ticker) -->
     <header class="sticky top-[50px] z-40 bg-[#0A142A]/90 backdrop-blur-sm shadow-xl transition-shadow duration-300">
         <!-- Binary Stream Background in Header (opacity: 0.2) -->
         <div class="absolute inset-0 binary-stream-bg opacity-20"></div>
@@ -177,19 +184,36 @@
             <a href="#register" class="hidden sm:inline-flex px-3 py-1 sm:px-4 sm:py-2 text-sm font-semibold rounded-full bg-accent text-gray-900 shadow-lg hover:bg-green-300 transition-all duration-300 transform hover:scale-105">
                 Start Trading
             </a>
-            <!-- Mobile Menu Placeholder -->
-            <button class="md:hidden text-gray-300 hover:text-accent focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-accent focus:outline-none p-2 rounded-lg">
+                <svg class="w-6 h-6" id="burger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg class="w-6 h-6 hidden" id="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </header>
 
+    <!-- 3. Mobile Menu Overlay (NEW) -->
+    <div id="mobile-menu" class="fixed top-[110px] left-0 w-full h-screen bg-[#0A142A]/95 backdrop-blur-sm z-30 md:hidden pb-20 overflow-y-auto">
+        <nav class="flex flex-col space-y-4 p-8 text-xl font-semibold">
+            <a href="#about" class="block py-3 text-center rounded-lg hover:bg-card hover:text-accent transition-colors duration-200 mobile-nav-link">The Guru</a>
+            <a href="#course" class="block py-3 text-center rounded-lg hover:bg-card hover:text-accent transition-colors duration-200 mobile-nav-link">Program</a>
+            <a href="#testimonials" class="block py-3 text-center rounded-lg hover:bg-card hover:text-accent transition-colors duration-200 mobile-nav-link">Success</a>
+            <a href="#register" class="block py-3 text-center rounded-lg hover:bg-card hover:text-accent transition-colors duration-200 mobile-nav-link">Enroll Today</a>
+            <div class="pt-8">
+                <a href="#register" class="block w-full text-center px-4 py-3 text-lg font-bold rounded-full bg-accent text-gray-900 shadow-lg hover:bg-green-300 transition-all duration-300 mobile-nav-link">
+                    Start Trading Now
+                </a>
+            </div>
+        </nav>
+    </div>
+
+
     <!-- Main Content (Adjusted padding-top to accommodate both fixed bars) -->
     <main class="pt-[110px]">
-        <!-- 2. Hero Section (High Impact & Initial Load Animation) -->
+        <!-- 4. Hero Section (High Impact & Initial Load Animation) -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center pb-16 overflow-hidden">
             
-            <!-- NEW: Full-screen background using the same pattern as the header (opacity: 0.4) -->
+            <!-- Full-screen background using the same pattern as the header (opacity: 0.4) -->
             <div class="hero-binary-bg"></div>
 
             <!-- Pulsing Neon Glow Overlay -->
@@ -211,16 +235,16 @@
             </div>
         </section>
 
-        <!-- 3. About The Guru: Sharon Vijit Singh (Parallax Image) -->
+        <!-- 5. About The Guru: Sharon Vijit Singh (Parallax Image) -->
         <section id="about" class="py-20 md:py-32 relative z-10 bg-[#070F1E]">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Responsive Grid: Columns stack on mobile -->
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <!-- Guru Image with Parallax Effect -->
                     <div class="relative aspect-square md:aspect-auto h-96" id="guru-image-container">
-                        <!-- Sharon Vijit Singh Profile Picture (Base64) -->
-                        <br><br><img id="guru-image"
-                             src="data:image/jpeg;base64,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"
+                        <!-- Sharon Vijit Singh Profile Picture (Base64) --><br><br><br>
+                        <img id="guru-image"
+                             src="data:image/jpeg;base64,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"
                              alt="Sharon Vijit Singh, Market Guru, Solomon Capitals"
                              class="rounded-3xl shadow-2xl dynamic-element object-cover w-full h-full"
                              style="transform: scale(1.05) translateY(0); transition: transform 0.1s linear, opacity 0.8s ease-out, scale 0.8s ease-out;"
@@ -257,7 +281,7 @@
             </div>
         </section>
 
-        <!-- 4. Course Offerings (The Solomon Program) -->
+        <!-- 6. Course Offerings (The Solomon Program) -->
         <section id="course" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <!-- Adjusted size for better mobile readability -->
@@ -296,13 +320,13 @@
                     </div>
                 </div>
 
-                <a href="#register" class="mt-12 sm:mt-16 inline-block px-8 py-3 sm:px-10 sm:py-4 text-lg sm:text-xl font-bold rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-pink-900 transition-all duration-300 dynamic-element hover:shadow-accent/50 hover:shadow-lg" data-delay="500">
+                <a href="#register" class="mt-12 sm:mt-16 inline-block px-8 py-3 sm:px-10 sm:py-4 text-lg sm:text-xl font-bold rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-blue-900 transition-all duration-300 dynamic-element hover:shadow-accent/50 hover:shadow-lg" data-delay="500">
                     Secure Your Spot
                 </a>
             </div>
         </section>
 
-        <!-- 5. Testimonials & Stats (Dynamic Number Display) -->
+        <!-- 7. Testimonials & Stats (Dynamic Number Display) -->
         <section id="testimonials" class="py-20 md:py-32 bg-[#070F1E] relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-4xl sm:text-5xl font-extrabold mb-12 sm:mb-16 dynamic-element">
@@ -330,12 +354,12 @@
                     <p class="text-base sm:text-xl italic text-gray-300 mb-6">
                         "The guidance from Sharon is unparalleled. I moved from chaotic speculation to strategic execution overnight. The Solomon Program provides the clearest blueprint for market success."
                     </p>
-                    <p class="text-base sm:text-lg font-semibold text-accent">- Shoeb Hussain, Former Retail Trader</p>
+                    <p class="text-base sm:text-lg font-semibold text-accent">-Shoeb H., Former Retail Trader</p>
                 </div>
             </div>
         </section>
 
-        <!-- 6. Registration/CTA (Sticky Form Element) -->
+        <!-- 8. Registration/CTA (Sticky Form Element) -->
         <section id="register" class="py-20 md:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Responsive Grid: Stacked on mobile -->
@@ -393,7 +417,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
             <p>&copy; 2025 Solomon Capitals. All Rights Reserved. Trading involves risk.</p>
             <p class="text-xs mt-2 text-gray-600">
-                Address: Plot No 123 Rathore Layout, Anant Nagar, Nagpur, Maharashtra 440019, IN
+                Address: Plot No 123 Rathore Layout, Anand Nagar, Nagpur, Maharashtra 440019, IN
             </p>
             <div class="mt-4 space-x-4 text-sm sm:text-base">
                 <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
@@ -418,7 +442,13 @@
         ];
 
         const tickerInner = document.querySelector('.ticker-inner');
-        const updateInterval = 1000; // Update every 3 seconds
+        const updateInterval = 1500; // Update every 3 seconds
+
+        // Mobile Menu Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const burgerIcon = document.getElementById('burger-icon');
+        const closeIcon = document.getElementById('close-icon');
 
         /**
          * Creates the HTML element for a single stock entry.
@@ -432,7 +462,7 @@
 
             // Add an ID for easy lookup and class for animation
             return `
-                <div class="flex items-center space-x-2 text-xs sm:text-sm font-medium transition duration-200 hover:scale-[1.02] cursor-default percentage-change ${flashClass}" 
+                <div class="flex items-center space-x-2 text-xs sm:text-sm font-medium transition duration-300 hover:scale-[1.02] cursor-default percentage-change ${flashClass}" 
                     title="${stock.full}" 
                     data-symbol="${stock.symbol}"
                     >
@@ -491,16 +521,51 @@
                             el.classList.add(newStock.isUp ? 'flash-up' : 'flash-down');
                             setTimeout(() => {
                                 el.classList.remove('flash-up', 'flash-down');
-                            }, 100);
+                            }, 500);
                         }
                     }
                 });
             }, 50); // Small delay to ensure render has completed
         }
         
-        // --- NEW: Smooth Scrolling Navigation ---
+        /**
+         * Closes the mobile menu and restores body scrolling.
+         */
+        function closeMobileMenu() {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                burgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = ''; 
+            }
+        }
+        
+        /**
+         * Toggles the state of the mobile menu.
+         */
+        function toggleMobileMenu() {
+            const isCurrentlyOpen = mobileMenu.classList.toggle('open');
+            
+            if (isCurrentlyOpen) {
+                // Menu opened
+                burgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent body scroll when menu is open
+            } else {
+                // Menu closed
+                burgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore body scroll
+            }
+        }
+
+        // Attach listener to the burger button
+        mobileMenuButton.addEventListener('click', () => toggleMobileMenu());
+
+
+        // --- Smooth Scrolling Navigation ---
         function setupSmoothScroll() {
-            // Select all internal links that point to a section ID
+            // Select all internal links that point to a section ID (both desktop and mobile)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 // Skip external links or those without a target ID
                 if (anchor.getAttribute('href').length > 1) { 
@@ -517,11 +582,18 @@
                                 behavior: 'smooth',
                                 block: 'start' // Scroll to the start of the element
                             });
+                            
+                            // Check if this click came from the mobile menu (mobile-nav-link class)
+                            // If so, automatically close the menu after the link is tapped.
+                            if (this.classList.contains('mobile-nav-link')) {
+                                closeMobileMenu(); // <--- FIXED: Call the explicit close function
+                            }
                         }
                     });
                 }
             });
         }
+        
 
 
         // --- Event Handlers and Initializers ---
@@ -670,6 +742,8 @@
         // 3. Initial Setup and Listener
         window.addEventListener('load', () => {
              setupSmoothScroll();
+             // Ensure the menu is closed on load, good practice for resilience against cached states
+             closeMobileMenu(); 
         });
 
         // Use the initial requestAnimationFrame approach instead of a standard scroll listener
